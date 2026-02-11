@@ -1,7 +1,147 @@
+/* --- Variables for the Monospace Theme --- */
+:root {
+  --bg-dark: #1e1e1e; /* Deep dark gray/black */
+  --bg-panel: #1e1e1e; /* Slightly lighter panel */
+  --border-color: #30363d;
+  --text-main: #c9d1d9;
+  --font-mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+}
+
+/* --- Main Layout --- */
 .container {
   display: flex;
   flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+  background-color: var(--bg-dark);
+  color: var(--text-main);
+  font-family: var(--font-mono);
+}
 
-  height: 100svh;
-  width: 100svw;
+/* --- Top Bar Container --- */
+.top-bar {
+  /* height: 60px; */
+  background-color: var(--bg-panel);
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 32px;
+  user-select: none; /* Prevents text highlighting on UI elements */
+}
+
+/* --- Left: Branding --- */
+.app-branding {
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.terminal-prompt {
+  color: #79c0ff; /* Soft Blue */
+}
+
+/* Blinking cursor animation */
+.cursor-blink {
+  animation: blink 1s step-end infinite;
+  color: #d2a8ff; /* Soft Purple */
+}
+
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+/* --- Right: Player Dock --- */
+.player-dock {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+/* Status Indicator (LIVE) */
+.status-indicator {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.75rem;
+  color: hsl(130, 69%, 70%); /* Green */
+  font-weight: 600;
+  border: 1px solid hsla(130, 69%, 70%, 0.333);
+  padding: 4px 10px;
+  border-radius: 20px;
+  background: hsla(130, 69%, 70%, 0.1);
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  background-color: hsl(130, 69%, 70%);
+  border-radius: 50%;
+  display: inline-block;
+  box-shadow: 0 0 0 0 hsla(130, 69%, 70%, 0.702);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 hsla(130, 69%, 70%, 0.7);
+  }
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 6px hsla(130, 69%, 70%, 0);
+  }
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 hsla(130, 69%, 70%, 0);
+  }
+}
+
+/* Avatar Stack */
+.avatar-stack {
+  display: flex;
+  align-items: center;
+}
+
+.avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: var(--bg-panel); /* Matches header bg */
+  border: 1px solid; /* Color comes from inline style */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 500;
+  margin-left: -10px; /* Creates the overlap effect */
+  transition:
+    transform 0.2s ease,
+    margin 0.2s ease;
+  cursor: pointer;
+  padding-top: 2px;
+}
+
+/* Hover effect to reveal the user */
+.avatar:hover {
+  transform: translateY(-4px);
+  z-index: 10;
+  margin-right: 4px;
+}
+
+/* The overflow counter (+2) */
+.overflow-count {
+  border-color: var(--border-color) !important;
+  color: var(--text-main) !important;
+  background-color: #21262d;
+  font-size: 0.7rem;
 }
